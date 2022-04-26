@@ -1,3 +1,5 @@
+import { render } from '@testing-library/react';
+import Home from './Home';
 
 const user = {
   id: 1,
@@ -10,6 +12,14 @@ const user = {
   color: 'crimson',
 }
 
-test('Should render the user profile', () => {
+
+describe('Home', () => {
+  
+  it('Should render the user profile', async () => {
+    render(
+      <Home user={user}/>
+    );
+  
+})
 
 })

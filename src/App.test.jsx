@@ -2,18 +2,15 @@ import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
-  it('Should render the header with an image, profile name, and background color', async () => {
+  it('Should render the header with an image, profile name', async () => {
     render(
       <App />
     );
 
-    screen.getByAltText('Alchemy Logo');
-
-    waitFor(() => {
-      screen.getByText(/^Meet \w+!$/i);
-    })
-      
-
+    const image = screen.getByAltText('Alchemy Logo');
+    screen.findByText(/^Meet \w+!$/i);
+    expect(image).toBeInTheDocument();
+   
   })
   
 })
