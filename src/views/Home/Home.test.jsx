@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Home from './Home';
 
 const user = {
@@ -19,7 +19,25 @@ describe('Home', () => {
     render(
       <Home user={user}/>
     );
-  
+    screen.debug();
+
+    const profileName = screen.getByText(`${user.name}`);
+    expect(profileName).toBeInTheDocument();
+
+    const motto = screen.getByLabelText('motto');
+    expect(motto.textContent).toEqual(user.motto);
+
+    const interests = screen.getByText('Interests');
+    expect(interests).toBeInTheDocument();
+
+    const avatar = screen.getByAltText('avatar');
+    expect(avatar.src).toEqual(user.avatar);
+
+    const headerImg = screen.getByAltText('header');
+    expect(headerImg.src).toEqual(user.header);
+
+    const likes = screen.getByRole('list');
+    expect(likes.childElementCount).toEqual(user.likes.length);
 })
 
 })
